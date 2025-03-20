@@ -93,11 +93,13 @@
         <input type="text" id="username" placeholder="ディスプレイネームを入力" required>
 
         <label>プラットフォーム:</label>
-        <select id="platform">
-            <option value="epic">Epic</option>
-            <option value="psn">PlayStation</option>
-            <option value="xbl">Xbox</option>
-        </select>
+<select id="platform">
+    <option value="pc">PC</option>
+    <option value="psn">PlayStation</option>
+    <option value="xbl">Xbox</option>
+    <option value="switch">Nintendo Switch</option>
+    <option value="mobile">Mobile</option>
+</select>
 
         <button type="button" onclick="checkAccount()">生成</button>
 <p><a href="terms.html" target="_blank">利用規約</a>に同意の上でご利用ください。</p>        
@@ -114,9 +116,10 @@
             alert('ディスプレイネームを入力してください');
             return;
         }
-
-        const apiKey = 'efd36bf0-bab7-4117-baed-339806428ca6'; // Fortnite Tracker APIキーを入力
+        const apiKey = 'efd36bf0-bab7-4117-baed-339806428ca6'
+        const platform = document.getElementById('platform').value;
         const url = `https://api.fortnitetracker.com/v1/profile/${platform}/${username}`;
+
 
         try {
             const response = await fetch(url, {
