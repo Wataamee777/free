@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // APIキーを取得する関数
     async function fetchApiKey() {
-        const response = await fetch('api/api.ap'); // APIキーを格納したファイルを読み込む
+        const response = await fetch('api/api.vbapi'); // APIキーを格納したファイルを読み込む
         if (!response.ok) {
             throw new Error('APIキーの読み込みに失敗しました');
         }
