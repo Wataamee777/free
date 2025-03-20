@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     async function checkAccount() {
         const username = document.getElementById('username').value;
         const platform = document.getElementById('platform').value;
-        const apiKey = 'YOUR_API_KEY'; // APIキーを設定
+        
+        // APIキーを読み込む
+        const apiKey = await fetchApiKey();
 
         if (!username) {
             alert('ディスプレイネームを入力してください');
@@ -36,6 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             displayResult(`エラー: ${error.message}`);
         }
+    }
+
+    // APIキーを取得する関数
+    async function fetchApiKey() {
+        const response = await fetch('api/api.ap'); // APIキーを格納したファイルを読み込む
+        if (!response.ok) {
+            throw new Error('APIキーの読み込みに失敗しました');
+        }
+        return await response.text(); // APIキーを返す
     }
 
     function generateRandomCode() {
