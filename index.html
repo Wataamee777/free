@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>V-Bucks コード生成</title>
+    <link rel="stylesheet" href="style.css"> <!-- 外部CSSファイルをリンク -->
 </head>
 <body>
 
@@ -33,70 +34,6 @@
 
 <div id="result"></div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Script loaded'); // スクリプトが正しく読み込まれているか確認
-
-    document.getElementById('vbucksForm').addEventListener('submit', async (event) => {
-        event.preventDefault(); // フォーム送信を防ぐ
-        console.log('Form submitted'); // イベントが発火しているか確認
-        await checkAccount();
-    });
-
-    async function checkAccount() {
-        const username = document.getElementById('username').value;
-        const platform = document.getElementById('platform').value;
-        const apiKey = 'efd36bf0-bab7-4117-baed-339806428ca6';
-
-        if (!username) {
-            alert('ディスプレイネームを入力してください');
-            return;
-        }
-
-        const url = `https://api.fortnitetracker.com/v1/profile/${platform}/${username}`;
-
-        try {
-            const response = await fetch(url, {
-                headers: {
-                    'TRN-Api-Key': apiKey
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('アカウントが見つかりません');
-            }
-
-            if (Math.random() < 1/3) {
-                const code = generateRandomCode();
-                displayResult(`成功しました！<br>生成コード: <strong>${code}</strong>`);
-            } else {
-                displayResult('生成に失敗しました。');
-            }
-        } catch (error) {
-            displayResult(`エラー: ${error.message}`);
-        }
-    }
-
-    function generateRandomCode() {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let code = '';
-        for (let i = 0; i < 16; i++) {
-            if (i > 0 && i % 4 === 0) code += '-';
-            code += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return code;
-    }
-
-    function displayResult(message) {
-        const result = document.getElementById('result');
-        result.innerHTML = message;
-        result.style.opacity = 0;
-        setTimeout(() => {
-            result.style.opacity = 1;
-        }, 100);
-    }
-});
-</script>
-
+<script src="script.js"></script> <!-- 外部JavaScriptファイルをリンク -->
 </body>
 </html>
