@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // APIキーを取得する関数
     async function fetchApiKey() {
-        const response = await fetch('https://wataamee777.github.io/free/api/api.txt'); // APIキーを格納したファイルを読み込む
+        const response = await fetch('efd36bf0-bab7-4117-baed-339806428ca6'); // APIキーを格納したファイルを読み込む
         if (!response.ok) {
             throw new Error('APIキーの読み込みに失敗しました');
         }
